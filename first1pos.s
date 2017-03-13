@@ -67,6 +67,19 @@ main:
 
 first1posshift:
 	### YOUR CODE HERE ###
+	li 	$s0 0		#contador de posiciones
+	beq 	$a0 0 default
+calculate:		
+	srl	$a0 $a0 1	#corrimiento en 1 de $a0
+	beq 	$a0 0 retVal 	#si ya llegue a la ultima posicion devuelvo mi contador
+	addi 	$s0 $s0 1	#incremento contador
+	j calculate
+retVal:
+	add 	$v0 $0 $s0
+	jr 	$ra
+default:
+	li 	$v0 -1
+	jr 	$ra
 
 first1posmask:
 	### YOUR CODE HERE ###
