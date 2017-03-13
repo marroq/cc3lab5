@@ -83,7 +83,18 @@ default:
 
 first1posmask:
 	### YOUR CODE HERE ###
-
+	beq	$a0 0 default
+	li 	$s0 31		#guardo 31 que sería mi posición más alta
+	li 	$s1 0x80000000	#mi máscara
+calcwithmask:
+	and 	$t0 $a0 $s1
+	bne	$t0 $0 retValMask
+	srl	$s1 $s1 1
+	addi 	$s0 $s0 -1	#si aún no es 1, decremento mi contador
+	j 	calcwithmask
+retValMask:
+	add 	$v0 $0 $s0	
+	jr 	$ra
 print_int:
 	move	$a0, $v0
 	li	$v0, 1
